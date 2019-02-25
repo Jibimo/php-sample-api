@@ -1,11 +1,11 @@
 # The Jibimo PHP Sample API
 This project contains sample PHP code for Jibimo business API.
 
-The Jibimo APIs are currently in three part. With part one you can made and validate a pay transaction which means you can pay money from your Jibimo account to a person.
+The Jibimo APIs are currently in three parts. With part one, you can make and validate a pay transaction which means you can pay money from your Jibimo account to a person. (Pay with phone number)
 
-With part two, you can request money from your friends and charge them, and validate their payment.
+With part two, you can request money from your friends and charge them, and validate their payment. (Payment Gateway)
 
-With part three you can pay directly to a bank account and validate it as well.
+With part three, you can directly pay to a bank account and validate it as well. (Direct Pay with IBAN)
 
 File structure:
 
