@@ -3,21 +3,17 @@
  * Created by IntelliJ IDEA.
  * User: jtag
  * Date: 2/25/19
- * Time: 2:29 PM
+ * Time: 3:06 PM
  */
 
 require_once "./functions.php";
 
 /**
- * This function will be used to pay to a user which may or may not be registered in Jibimo.
- * @param $mobileNumber string Mobile number of a person whom you want to pay to.
- * @param $amount int Amount of payment in Toomaans.
- * @param $privacy string Privacy scope which can be one of `Public`, `Friend` or `Personal`.
- * @param $description string Transaction description which will be appear in feed.
- * @param $trackerId string A UUID which will be used as factor id.
+ * This function will be used to validate a pay transaction in Jibimo.
+ * @param $transactionId int The ID of a pay transaction that you requested before.
  * @return bool|string
  */
-function pay($mobileNumber, $amount, $privacy, $description, $trackerId)
+function validatePay($transactionId)
 {
 
     $headers = [
@@ -27,24 +23,10 @@ function pay($mobileNumber, $amount, $privacy, $description, $trackerId)
         'Accept: application/json',
     ];
 
-    $data = [
-        'mobile_number' => $mobileNumber,
-        'amount' => $amount, // ***NOTE*** This amount is in Toomaans
-        'privacy' => $privacy,
-        'description' => $description,
-        'tracker_id' => $trackerId,
-    ];
-
     // Remove `sandbox` from URL if you want to call the main API in production server
-    return post("https://jibimo.com/sandbox/api/business/pay", $data, $headers);
+    return get("https://jibimo.com/sandbox/api/business/pay/$transactionId", $headers);
 }
 
-$result = pay(
-    '+989121271063',
-    8500,
-    'Friend',
-    'ممنون که از سرویس ما خرید کردید!',
-    '33298f08-d1e2-49fa-8585-6bd510acca38'
-);
+$result = validatePay(2312);
 
 var_dump($result);
